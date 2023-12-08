@@ -54,6 +54,8 @@ const IndividualPage = ({ user, loggedUser }) => {
     }
   }, [user, loggedUser]);
 
+  if (!user || !loggedUser) return null;
+
   // Handler for unfollow action
   const unfollowHandler = async () => {
     // Placeholder for unfollow logic
