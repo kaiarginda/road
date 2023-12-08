@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 
-const page = () => {
+const Page = () => {
   const [loggedUser, setLoggedUser] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
@@ -94,4 +94,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

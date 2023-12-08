@@ -117,12 +117,11 @@ const Page = () => {
           </button>
         </form>
         <div className="p-3">
-          {" "}
           {loading ? <ClipLoader color="#36d7b7" /> : null}
         </div>
         <div className="mt-4 text-sm text-gray-600 text-xl">
           <a href="/register" className="text-blue-500 hover:underline">
-            Don't have an account? Register{" "}
+            Don't have an account? Register
           </a>
         </div>
       </div>
