@@ -135,7 +135,7 @@
 //         users={user.following}
 //       />
 //       <h1 className="text-2xl font-bold mb-4">{user.username}'s Favourites:</h1>
-//       {!user.favourites || user.favourites.length == 0 ? (
+//       {!user.favourites || user.favourites.length === 0 ? (
 //         " User Has No Favourites "
 //       ) : (
 //         <div className="container mx-auto p-4 bg-gray-100">
@@ -277,13 +277,17 @@
 
 // export default Page;
 
-"use client";
-
+// Import React, useState, and useEffect
 import React, { useState, useEffect } from "react";
+// Import the CSS file "./some.css"
 import "./some.css";
 
+// FollowerListModal component
 const FollowerListModal = ({ isOpen, onClose, users }) => {
+  // If modal is not open, return null
   if (!isOpen) return null;
+
+  // Return the modal structure
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
       <div className="bg-white p-4 rounded-md">
@@ -306,7 +310,9 @@ const FollowerListModal = ({ isOpen, onClose, users }) => {
   );
 };
 
+// IndividualPage component
 const IndividualPage = ({ user, loggedUser }) => {
+  // If user or loggedUser is null, return null
   if (!user || !loggedUser) return null;
 
   // State for modal visibility and followers/following lists
@@ -314,6 +320,7 @@ const IndividualPage = ({ user, loggedUser }) => {
   const [followingModalOpen, setFollowingModalOpen] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
 
+  // useEffect to check if the logged-in user is following the current user
   useEffect(() => {
     // Check if the user is logged in before fetching data
     if (loggedUser) {
@@ -324,6 +331,7 @@ const IndividualPage = ({ user, loggedUser }) => {
     }
   }, [user, loggedUser]);
 
+  // Handler for unfollow action
   const unfollowHandler = async () => {
     // Placeholder for unfollow logic
     await fetch("/api/follow", {
@@ -336,6 +344,7 @@ const IndividualPage = ({ user, loggedUser }) => {
     console.log("Unfollow logic placeholder");
   };
 
+  // Handler for follow action
   const followHandler = async () => {
     // Placeholder for follow logic
     await fetch("/api/follow", {
@@ -347,8 +356,11 @@ const IndividualPage = ({ user, loggedUser }) => {
     });
   };
 
+  // Function to render the follow/unfollow button
   const renderFollowButton = () => {
+    // If the current user is viewing their own profile, return null
     if (user.username === loggedUser.username) return null;
+    // If the user is already following, render unfollow button; otherwise, render follow button
     if (isFollowing) {
       return (
         <button
@@ -370,6 +382,7 @@ const IndividualPage = ({ user, loggedUser }) => {
     }
   };
 
+  // Display user information and interactions
   return (
     <div className="flex flex-col items-center mt-8">
       <h1>{loggedUser.username}</h1>
@@ -413,18 +426,20 @@ const IndividualPage = ({ user, loggedUser }) => {
         onClose={() => setFollowingModalOpen(false)}
         users={user.following}
       />
+      {/* Display user's favorites */}
       <h1 className="text-2xl font-bold mb-4">{user.username}'s Favourites:</h1>
       {!user.favourites || user.favourites.length === 0 ? (
         " User Has No Favourites "
       ) : (
         <div className="container mx-auto p-4 bg-gray-100">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Display favorite 1 */}
             {user.favourites.includes(1) ? (
               <div className="card bg-white rounded-md overflow-hidden shadow-md">
                 <div className="relative">
                   <img
                     src="../../images/sea.jpg"
-                    alt="Forest"
+                    alt="The Sea"
                     className="w-full h-40 object-cover rounded-t"
                   />
                   <h2 className="absolute top-2 right-2 text-2xl"></h2>
@@ -441,19 +456,20 @@ const IndividualPage = ({ user, loggedUser }) => {
               </div>
             ) : null}
 
+            {/* Display favorite 2 */}
             <div>
               {user.favourites.includes(2) ? (
                 <div className="card bg-white rounded-md overflow-hidden shadow-md">
                   <div className="relative">
                     <img
                       src="../../images/forest.jpg"
-                      alt="Forest"
+                      alt="The Wild Forest"
                       className="w-full h-40 object-cover rounded-t"
                     />
                     <h2 className="absolute top-2 right-2 text-2xl"></h2>
                     <div className="p-4">
                       <h1 className="text-lg font-bold mb-2">
-                        The wild forest
+                        The Wild Forest
                       </h1>
                       <ul className="list-disc pl-4">
                         <li>7 days tour</li>
@@ -467,13 +483,14 @@ const IndividualPage = ({ user, loggedUser }) => {
               ) : null}
             </div>
 
+            {/* Display favorite 3 */}
             <div>
               {user.favourites.includes(3) ? (
                 <div className="card bg-white rounded-md overflow-hidden shadow-md">
                   <div className="relative">
                     <img
                       src="../../images/river.jpg"
-                      alt="Forest"
+                      alt="The River"
                       className="w-full h-40 object-cover rounded-t"
                     />
                     <h2 className="absolute top-2 right-2 text-2xl"></h2>
@@ -494,17 +511,23 @@ const IndividualPage = ({ user, loggedUser }) => {
         </div>
       )}
 
+      {/* Go back link */}
       <a href="/">Go Back To The Dashboard</a>
     </div>
   );
 };
 
+// Page component
 const Page = ({ params }) => {
+  // State for user and loggedUser
   const [user, setUser] = useState(null);
   const [loggedUser, setLoggedUser] = useState(null);
+  // Extract the "name" parameter from the params object
   const { name } = params;
 
+  // useEffect to fetch user data by name and logged-in user data
   useEffect(() => {
+    // Fetch user data by name
     const getuserbyname = async () => {
       const res = await fetch("/api/getuserbyname", {
         method: "POST",
@@ -521,8 +544,8 @@ const Page = ({ params }) => {
     };
     getuserbyname();
 
+    // Fetch logged-in user data
     const retrievedToken = localStorage.getItem("token");
-
     const fetchLoggedUser = async () => {
       try {
         const res = await fetch("/api/getuserbytoken", {
@@ -547,11 +570,14 @@ const Page = ({ params }) => {
     fetchLoggedUser();
   }, []);
 
+  // Return the component structure
   return (
     <div>
+      {/* Render IndividualPage component with user and loggedUser props */}
       <IndividualPage user={user} loggedUser={loggedUser} />
     </div>
   );
 };
 
+// Export the Page component as the default export
 export default Page;
