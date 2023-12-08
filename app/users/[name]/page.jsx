@@ -110,8 +110,7 @@ const IndividualPage = ({ user, loggedUser }) => {
   // Display user information and interactions
   return (
     <div className="flex flex-col items-center mt-8">
-      <h1>{loggedUser.username}</h1>
-      <h1 className="text-2xl font-bold mb-4">{user.username}'s Profile</h1>
+      <h1 className="text-2xl font-bold mb-4">{user.username} Profile</h1>
 
       {/* Display followers count and open followers modal on click */}
       <div className="mb-4">
@@ -152,9 +151,9 @@ const IndividualPage = ({ user, loggedUser }) => {
         users={user.following}
       />
       {/* Display user's favorites */}
-      <h1 className="text-2xl font-bold mb-4">{user.username}'s Favourites:</h1>
+      <h1 className="text-2xl font-bold mb-4">{user.username} Favourites:</h1>
       {!user.favourites || user.favourites.length === 0 ? (
-        " User Has No Favourites "
+        "User Has No Favourites"
       ) : (
         <div className="container mx-auto p-4 bg-gray-100">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
