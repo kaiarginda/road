@@ -171,8 +171,8 @@ export default function Home() {
         <div className="header-text">
           <h1 className="heading">Around the world</h1>
           <p className="header-paragraph">
-            "Traveling - it leaves you speechless, then turns you into a
-            storyteller"
+            &ldquo;Traveling - it leaves you speechless, then turns you into a
+            storyteller&rdquo;
           </p>
         </div>
         <img
@@ -563,13 +563,6 @@ export default function Home() {
 }
 {
   /* 
-1.register/login system |||||||||||||||||done
-2.user profile optimization |||||||||||||||||done  
-3.user can write a testimonial |||||||||||||||||done
-4.user can buy a product.
-5.user can view user's favourite products  |||||||||||||||||done
-6.user can add any product to favourites |||||||||||||||||done
-7.every product has a comment section |||||||||||||||||done
-8.i am 190.
+
 */
 }

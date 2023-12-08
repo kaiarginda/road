@@ -2,7 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
-const page = () => {
+const Page = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -98,4 +98,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
