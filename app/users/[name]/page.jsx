@@ -164,7 +164,7 @@ const IndividualPage = ({ user, loggedUser }) => {
                 <div className="relative">
                   <img
                     src="../../images/sea.jpg"
-                    alt="The Sea"
+                    alt="The Sea's Image"
                     className="w-full h-40 object-cover rounded-t"
                   />
                   <h2 className="absolute top-2 right-2 text-2xl"></h2>
@@ -188,7 +188,7 @@ const IndividualPage = ({ user, loggedUser }) => {
                   <div className="relative">
                     <img
                       src="../../images/forest.jpg"
-                      alt="The Wild Forest"
+                      alt="The Wild Forest's Image"
                       className="w-full h-40 object-cover rounded-t"
                     />
                     <h2 className="absolute top-2 right-2 text-2xl"></h2>
