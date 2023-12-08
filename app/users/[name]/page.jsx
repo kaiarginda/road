@@ -35,7 +35,6 @@ const FollowerListModal = ({ isOpen, onClose, users }) => {
 // IndividualPage component
 const IndividualPage = ({ user, loggedUser }) => {
   // If user or loggedUser is null, return null
-  if (!user || !loggedUser) return null;
 
   // State for modal visibility and followers/following lists
   const [followersModalOpen, setFollowersModalOpen] = useState(false);
@@ -50,6 +49,8 @@ const IndividualPage = ({ user, loggedUser }) => {
       if (user.followers.includes(loggedUser.username)) {
         setIsFollowing(true);
       }
+    } else {
+      return null;
     }
   }, [user, loggedUser]);
 
